@@ -27,7 +27,6 @@ def upload_file():
         data = data[data["ServiceName"] == 'Physician Advisor']
         if report_type == 'dynamodb_backend':
             data = data[data['Pricing'].apply(lambda p: 'per review all states' in p)]
-        data.to_csv('out.csv', index=False)
 
         resp = make_response(data.to_csv(index=False))
         resp.headers["Content-Disposition"] = f'attachment; filename={report_type}.csv'
