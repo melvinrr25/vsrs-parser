@@ -34,6 +34,8 @@ def upload_file():
         resp.headers["Content-Type"] = "text/csv"
         if os.path.exists(file_path):
             os.remove(file_path)
+        if os.path.exists(cleaned_file_path):
+            os.remove(cleaned_file_path)
         return resp
 
 with_debug = True if os.getenv('FLASK_DEBUG') else False
