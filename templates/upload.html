@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-slate-800 flex items-center justify-center">
+    <form action="/upload-csv" method="POST" enctype="multipart/form-data" 
+      class="shadow-lg bg-slate-700 rounded-lg p-8 flex flex-col text-slate-300 gap-5"
+    >
+      <h1 class="text-xl text-center text-white">VSRs report generation</h1>
+      <div class="border-b border-slate-600"></div>
+      <div class="flex flex-col">
+        <label class="block mb-2" for="file">Upload file:</label>
+        <input required accept=".csv" class="block w-full text-sm text-gray-900 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file" type="file" name="file">
+      </div>
+      <div class="flex flex-col">
+        <label class="block mb-2" for="type">Select report type:</label>
+        <select id=type name="report_type" class="border border-slate-500 text-slate-300 text-sm rounded-lg bg-slate-600 block w-full p-2.5">
+          <option value="dynamodb_backend">DynamoDB/Backend</option>
+          <option value="frontend">Frontend</option>
+        </select>
+      </div>
+      <div class="flex justify-end">
+        <input class="cursor-pointer bg-cyan-600 hover:bg-cyan-500 text-white uppercase rounded-lg shadow py-3 px-4 text-sm" type="submit" value="Generate Report"/>
+      </div>
+    </form>   
+  </body>
+</html>
