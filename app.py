@@ -25,8 +25,8 @@ def upload_file():
         data = pd.read_csv(cleaned_file_path)
         data.fillna('', inplace=True)
         data = data[data["ServiceName"] == 'Physician Advisor']
-        if report_type == 'dynamodb_backend':
-            data = data[data['Pricing'].apply(lambda p: 'per review all states' in p)]
+        #if report_type == 'dynamodb_backend':
+            #data = data[data['Pricing'].apply(lambda p: 'per review all states' in p)]
 
         resp = make_response(data.to_csv(index=False))
         resp.headers["Content-Disposition"] = f'attachment; filename={report_type}.csv'
