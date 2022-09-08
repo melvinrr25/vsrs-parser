@@ -8,7 +8,6 @@ def start_cleanup(path_to_file_to_clean):
     f = io.open(path_to_file_to_clean, mode="r", encoding="utf-8")
     csvdata = io.StringIO(f.read())
     reader = csv.DictReader(csvdata, dialect='excel')
-    total = 0
     final_csv.write("ClientID,ClientName,EffectiveDate,ServiceName,Pricing,CustomPricing,PAReviewRecordsPricing,PAReviewRecordsCustomPricing,PAAppealPricing,PAAppealCustomPricing,Comments\n")
 
     for row in reader:
@@ -28,7 +27,6 @@ def start_cleanup(path_to_file_to_clean):
         pa_review_records_custom_pricing = " ".join(re.findall(strRegex, row.get('PAReviewRecordsCustomPricing', '')))
         pa_appeal_pricing = " ".join(re.findall(strRegex, row.get('PAAppealPricing', '')))
         pa_appeal_custom_pricing = " ".join(re.findall(strRegex, row.get('PAAppealCustomPricing', '')))
-        total += 1
         line = f"{client_id},{client_name},{effective_date},{service_name},{pricing},{custom_pricing},{pa_review_records_pricing},{pa_review_records_custom_pricing},{pa_appeal_pricing},{pa_appeal_custom_pricing},{comments}\n"
         final_csv.write(line)
     final_csv.close()
